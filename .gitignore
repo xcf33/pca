@@ -1,0 +1,5 @@
+sims_test.py
+sims
+output/*.*
+cosine.py
+.DS_Store
