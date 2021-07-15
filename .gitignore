@@ -3,3 +3,4 @@ sims
 output/*.*
 cosine.py
 .DS_Store
+output/pca
