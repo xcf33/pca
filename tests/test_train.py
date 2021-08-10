@@ -14,7 +14,11 @@ class test_train():
         self.app_dir = app_dir
         self.ids, features = self.load('train.txt')
         self.variance_retained = .99
-        self.pca = pca_experiment(features, 'train.txt', self.variance_retained, f'{self.app_dir}/output')
+        storage_config = {
+            'name': 'train',
+            'output_dir': f'{self.app_dir}/output',
+        }
+        self.pca = pca_experiment(features, self.variance_retained, 'file', storage_config)
 
     def run(self):
         print(f"Training set shape: {self.pca.features.shape[0]},{self.pca.features.shape[1]}")
@@ -68,7 +72,11 @@ class test_test(test_train):
         self.ids, features = self.load('test.txt')
         self.variance_retained = .99
         # We are passing in the train.txt to look for the fitted metrics from the training set
-        self.pca = pca_experiment(features, 'train.txt', self.variance_retained, f'{self.app_dir}/output')
+        storage_config = {
+            'name': 'train',
+            'output_dir': f'{self.app_dir}/output',
+        }
+        self.pca = pca_experiment(features, self.variance_retained, 'file', storage_config)
 
     def run(self):
         print(f"Performing PCA on a test set of shape: {self.pca.features.shape[0]},{self.pca.features.shape[1]}")
